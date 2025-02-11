@@ -146,6 +146,7 @@ object RowExtractorTest{
 
 import za.co.absa.cobrix.cobol.parser.ast.Group
 import za.co.absa.cobrix.cobol.reader.extractors.record.RecordHandler
+import za.co.absa.cobrix.cobol.reader.extractors.record.RecordHandler
 
 class SimpleRecordHandler extends RecordHandler[scala.Array[Any]] {
   override def create(values: Array[Any], group: Group): Array[Any] = values

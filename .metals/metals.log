@@ -11707,3 +11707,10 @@ Feb. 10, 2025 10:02:33 P.M. org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint n
 WARNING: Unsupported notification method: metals/windowStateDidChange
 Feb. 10, 2025 10:02:42 P.M. org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
 WARNING: Unsupported notification method: metals/windowStateDidChange
+Feb. 10, 2025 10:03:33 P.M. org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+WARNING: Unsupported notification method: metals/windowStateDidChange
+Feb. 10, 2025 10:04:19 P.M. org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+WARNING: Unsupported notification method: metals/windowStateDidChange
+2025.02.10 22:05:53 INFO  no build target found for /Users/franklinzhao/Documents/ITprojects/java/cobrix/examples/spark-cobol-s3-standalone/src/main/scala/com/example/spark/cobol/app/RowExtractorTest.scala. Using presentation compiler with project's scala-library version: 2.12.17
+2025.02.10 22:05:53 INFO  no build target found for /Users/franklinzhao/Documents/ITprojects/java/cobrix/examples/spark-cobol-s3-standalone/src/main/scala/com/example/spark/cobol/app/RowExtractorTest.scala. Using presentation compiler with project's scala-library version: 2.12.17
+2025.02.10 22:05:53 WARN  no build target for: /Users/franklinzhao/Documents/ITprojects/java/cobrix/examples/spark-cobol-s3-standalone/src/main/scala/com/example/spark/cobol/app/RowExtractorTest.scala
