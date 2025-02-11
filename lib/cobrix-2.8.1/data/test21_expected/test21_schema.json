@@ -1,0 +1,59 @@
+{
+  "type" : "struct",
+  "fields" : [ {
+    "name" : "RECORD",
+    "type" : {
+      "type" : "struct",
+      "fields" : [ {
+        "name" : "COUNT",
+        "type" : "integer",
+        "nullable" : true,
+        "metadata" : { }
+      }, {
+        "name" : "GROUP",
+        "type" : {
+          "type" : "array",
+          "elementType" : {
+            "type" : "struct",
+            "fields" : [ {
+              "name" : "INNER_COUNT",
+              "type" : "integer",
+              "nullable" : true,
+              "metadata" : { }
+            }, {
+              "name" : "INNER_GROUP",
+              "type" : {
+                "type" : "array",
+                "elementType" : {
+                  "type" : "struct",
+                  "fields" : [ {
+                    "name" : "FIELD",
+                    "type" : "string",
+                    "nullable" : true,
+                    "metadata" : {
+                      "maxLength" : 1
+                    }
+                  } ]
+                },
+                "containsNull" : true
+              },
+              "nullable" : true,
+              "metadata" : {
+                [redacted],
+                [redacted]
+              }
+            } ]
+          },
+          "containsNull" : true
+        },
+        "nullable" : true,
+        "metadata" : {
+          [redacted],
+          [redacted]
+        }
+      } ]
+    },
+    "nullable" : true,
+    "metadata" : { }
+  } ]
+}

@@ -14,11 +14,13 @@
  */
 
 package com.example.spark.cobol.app
-
+// import utils.{ConfigUtils, SparkS3Utils}
 import com.example.spark.cobol.app.utils.{ConfigUtils, SparkS3Utils}
 import com.typesafe.config.ConfigFactory
 import org.apache.spark.sql.SparkSession
 import za.co.absa.cobrix.spark.cobol.utils.SparkUtils
+//put the parser here.
+// import za.co.absa.cobol.cobol-parser.CopybookParser;
 
 /**
   * This is an example Spark/Cobol Application reading data from S3 as a standalone application.
@@ -48,7 +50,7 @@ object SparkCobolS3App {
     // Alternatively, you can,
     // - put the file locally and use "file:///path/to/copybook"
     // - put the file to S3 and use "s3a://bucket/path/to/copybook"
-    val copybook =
+    val copybook0 =
     """        01  RECORD.
       |           05  ID                        PIC S9(4)  COMP.
       |           05  COMPANY.
@@ -69,11 +71,33 @@ object SparkCobolS3App {
       |                           ACCOUNT-TYPE-N  PIC X(3).
       |""".stripMargin
 
+    val copybook ="""
+              01  COMPANY-DETAILS.
+            05  SEGMENT-ID           PIC X(5).
+            05  COMPANY-ID           PIC X(10).
+            05  STATIC-DETAILS.
+               10  COMPANY-NAME      PIC X(15).
+               10  ADDRESS           PIC X(25).
+               10  TAXPAYER.
+                  15  TAXPAYER-TYPE  PIC X(1).
+                  15  TAXPAYER-STR   PIC X(8).
+                  15  TAXPAYER-NUM  REDEFINES TAXPAYER-STR
+                                     PIC 9(8) COMP.
+            05  CONTACTS REDEFINES STATIC-DETAILS.
+               10  PHONE-NUMBER      PIC X(17).
+               10  CONTACT-PERSON    PIC X(28).
+    """.stripMargin
+
+    val copybookPath = "/Users/franklinzhao/Documents/ITprojects/java/cobrix/examples/example_data/raw_file.cob"
+    val inputData = "/Users/franklinzhao/Documents/ITprojects/java/cobrix/examples/example_data/raw_data/"
+
     val df = spark.read
       .format("cobol")
-      .option("copybook_contents", copybook)
+      // .option("copybook_contents", copybook)
+      .option("copybook", copybookPath)
       .option("schema_retention_policy", "collapse_root")
-      .load("s3a://mybucket/mydata")
+      .load(inputData)
+      // .load("s3a://mybucket/mydata")
 
     df.printSchema()
 

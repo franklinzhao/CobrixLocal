@@ -1,0 +1,102 @@
+#
+# Copyright 2022 ABSA Group Limited
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+
+name: JaCoCo report
+
+on:
+  pull_request:
+    branches: [ master ]
+    paths:
+      - "cobol-parser/**"
+      - "cobol-converters/**"
+      - "spark-cobol/**"
+      - "project/**"
+      - "build.sbt"
+
+jobs:
+  test:
+    runs-on: ubuntu-22.04
+    strategy:
+      matrix:
+        # The project supports Scala 2.11, 2.12, 2.13
+        # The CI runs all tests suites for all supported Scala versions at build.yml
+        # The codebase for all Scala versions is the same, so the coverage is calculated only once
+        # Scala 2.12 is chosen since it is supported by the most wide range of Spark versions and
+        # vendor distributions.
+        include:
+          - scala: 2.12.20
+            scalaShort: "2.12"
+            spark: 3.3.4
+            overall: 0.0
+            changed: 80.0
+
+            # Historically, 'cobol-parser' module was part of 'spark-cobol' and the coverage is combined.
+            # Jacoco can't combine coverage across modules, so until 'cobol-parser' has unit tests
+            # that covers the same codepade from the same module, the coverage requirement is lowered to 20%.
+            changedCobolParserOverride: 20
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Setup JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 8
+          cache: sbt
+      - name: Build and run tests
+        run: sbt ++${{matrix.scala}} jacoco -DSPARK_VERSION=${{matrix.spark}}
+      - name: Add coverage of 'cobol-parser' to PR
+        id: jacocoParser
+        uses: madrapps/jacoco-report@v1.7.1
+        with:
+          paths: >
+            ${{ github.workspace }}/cobol-parser/target/scala-${{ matrix.scalaShort }}/jacoco/report/jacoco.xml
+          token: ${{ secrets.GITHUB_TOKEN }}
+          min-coverage-overall: ${{ matrix.overall }}
+          min-coverage-changed-files: ${{ matrix.changedCobolParserOverride }}
+          title: JaCoCo code coverage report - 'cobol-parser'
+          update-comment: true
+      - name: Get the Coverage info
+        run: |
+          echo "Total coverage ${{ steps.jacoco.outputs.coverage-overall }}"
+          echo "Changed Files coverage ${{ steps.jacoco.outputs.coverage-changed-files }}"
+      - name: Add coverage of 'spark-cobol' to PR
+        id: jacoco
+        uses: madrapps/jacoco-report@v1.3
+        with:
+          paths: >
+            ${{ github.workspace }}/spark-cobol/target/scala-${{ matrix.scalaShort }}/jacoco/report/jacoco.xml
+          token: ${{ secrets.GITHUB_TOKEN }}
+          min-coverage-overall: ${{ matrix.overall }}
+          min-coverage-changed-files: ${{ matrix.changed }}
+          title: JaCoCo code coverage report - 'spark-cobol'
+          update-comment: true
+      - name: Get the Coverage info
+        run: |
+          echo "Total coverage ${{ steps.jacoco.outputs.coverage-overall }}"
+          echo "Changed Files coverage ${{ steps.jacoco.outputs.coverage-changed-files }}"
+      - name: Fail PR if changed files coverage for 'cobol-parser' is less than ${{ matrix.changedCobolParserOverride }}%
+        if: ${{ steps.jacocoParser.outputs.coverage-changed-files < matrix.changedCobolParserOverride }}
+        uses: actions/github-script@v6
+        with:
+          script: |
+            core.setFailed('Changed files coverage is less than ${{ matrix.changedCobolParserOverride }}% for 'cobol-parser'!')
+      - name: Fail PR if changed files coverage for 'spark-cobol' is less than ${{ matrix.changed }}%
+        if: ${{ steps.jacoco.outputs.coverage-changed-files < matrix.changed }}
+        uses: actions/github-script@v6
+        with:
+          script: |
+            core.setFailed('Changed files coverage is less than ${{ matrix.changed }}% for 'spark-cobol!')

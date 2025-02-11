@@ -1,0 +1,76 @@
+{
+  "type" : "struct",
+  "fields" : [ {
+    "name" : "RECORD",
+    "type" : {
+      "type" : "struct",
+      "fields" : [ {
+        "name" : "ID",
+        "type" : "integer",
+        "nullable" : true,
+        "metadata" : { }
+      }, {
+        "name" : "DATA",
+        "type" : {
+          "type" : "struct",
+          "fields" : [ {
+            "name" : "FIELD",
+            "type" : "string",
+            "nullable" : true,
+            "metadata" : {
+              "maxLength" : 1
+            }
+          }, {
+            "name" : "DETAIL1",
+            "type" : {
+              "type" : "array",
+              "elementType" : {
+                "type" : "struct",
+                "fields" : [ {
+                  "name" : "VAL1",
+                  "type" : "string",
+                  "nullable" : true,
+                  "metadata" : {
+                    "maxLength" : 1
+                  }
+                } ]
+              },
+              "containsNull" : true
+            },
+            "nullable" : true,
+            "metadata" : {
+              [redacted],
+              [redacted]
+            }
+          }, {
+            "name" : "DETAIL2",
+            "type" : {
+              "type" : "array",
+              "elementType" : {
+                "type" : "struct",
+                "fields" : [ {
+                  "name" : "VAL2",
+                  "type" : "string",
+                  "nullable" : true,
+                  "metadata" : {
+                    "maxLength" : 1
+                  }
+                } ]
+              },
+              "containsNull" : true
+            },
+            "nullable" : true,
+            "metadata" : {
+              [redacted],
+              [redacted]
+            }
+          } ]
+        },
+        "nullable" : true,
+        "metadata" : { }
+      } ]
+    },
+    "nullable" : true,
+    "metadata" : { }
+  } ]
+}

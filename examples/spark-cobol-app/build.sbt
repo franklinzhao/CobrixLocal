@@ -15,16 +15,18 @@
  */
 
 ThisBuild / organization := "com.example"
-ThisBuild / name         := "spark-cobol-app"
+ThisBuild / name         := "spark-cobol-app-example"
 ThisBuild / version      := "0.1.0-SNAPSHOT"
-ThisBuild / scalaVersion := "2.12.17"
+ThisBuild / scalaVersion := "3.6.3"
+ThisBuild / javacOptions := Seq("-source", "1.8", "-target", "1.8")
 
 val sparkVersion = "3.5.3"
 val sparkCobolVersion = "2.8.1"
 val scalatestVersion = "3.2.14"
 
 ThisBuild / libraryDependencies ++= Seq(
-  "za.co.absa.cobrix" %% "spark-cobol"     % sparkCobolVersion,
+  // "za.co.absa.cobrix" %% "spark-cobol"     % sparkCobolVersion,
+  "za.co.absa.cobrix" %% "cobol-spark" % "2.8.1",
   "org.scalatest"     %% "scalatest"       % scalatestVersion   % Test,
   "org.apache.spark"  %% "spark-sql"       % sparkVersion       % Provided,
 )

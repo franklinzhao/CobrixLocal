@@ -1,0 +1,24 @@
+name: FOSSA License Scanning
+
+on:
+  push:
+    paths-ignore:
+      - '**.md'
+      - '**.csv'
+      - '**.plot'
+      - '**.properties'
+      - '**.json'
+      - '**.svg'
+
+jobs:
+  fossa:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Run FOSSA scan and upload build data
+        uses: fossa-contrib/fossa-action@v2
+        with:
+          fossa-api-key: ${{secrets.FOSSA_API_KEY}}

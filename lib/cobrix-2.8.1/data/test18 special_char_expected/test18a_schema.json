@@ -1,0 +1,231 @@
+{
+  "type" : "struct",
+  "fields" : [ {
+    "name" : "File_Id",
+    "type" : "integer",
+    "nullable" : false,
+    "metadata" : { }
+  }, {
+    "name" : "Record_Id",
+    "type" : "long",
+    "nullable" : false,
+    "metadata" : { }
+  }, {
+    "name" : "Record_Byte_Length",
+    "type" : "integer",
+    "nullable" : false,
+    "metadata" : { }
+  }, {
+    "name" : "SEGMENT_ID",
+    "type" : "integer",
+    "nullable" : true,
+    "metadata" : { }
+  }, {
+    "name" : "COMPANY",
+    "type" : {
+      "type" : "struct",
+      "fields" : [ {
+        "name" : "COMPANY_NAME",
+        "type" : "string",
+        "nullable" : true,
+        "metadata" : {
+          "maxLength" : 20
+        }
+      }, {
+        "name" : "ADDRESS",
+        "type" : "string",
+        "nullable" : true,
+        "metadata" : {
+          "maxLength" : 30
+        }
+      }, {
+        "name" : "TAXPAYER",
+        "type" : "long",
+        "nullable" : true,
+        "metadata" : { }
+      } ]
+    },
+    "nullable" : true,
+    "metadata" : { }
+  }, {
+    "name" : "DEPT",
+    "type" : {
+      "type" : "struct",
+      "fields" : [ {
+        "name" : "DEPT_NAME",
+        "type" : "string",
+        "nullable" : true,
+        "metadata" : {
+          "maxLength" : 22
+        }
+      }, {
+        "name" : "EXTENSION",
+        "type" : "integer",
+        "nullable" : true,
+        "metadata" : { }
+      } ]
+    },
+    "nullable" : true,
+    "metadata" : { }
+  }, {
+    "name" : "EMPLOYEE",
+    "type" : {
+      "type" : "struct",
+      "fields" : [ {
+        "name" : "FIRST_NAME",
+        "type" : "string",
+        "nullable" : true,
+        "metadata" : {
+          "maxLength" : 16
+        }
+      }, {
+        "name" : "LAST_NAME",
+        "type" : "string",
+        "nullable" : true,
+        "metadata" : {
+          "maxLength" : 16
+        }
+      }, {
+        "name" : "ROLE",
+        "type" : "string",
+        "nullable" : true,
+        "metadata" : {
+          "maxLength" : 18
+        }
+      }, {
+        "name" : "HOME_ADDRESS",
+        "type" : "string",
+        "nullable" : true,
+        "metadata" : {
+          "maxLength" : 40
+        }
+      }, {
+        "name" : "PHONE_NUM",
+        "type" : "string",
+        "nullable" : true,
+        "metadata" : {
+          "maxLength" : 17
+        }
+      } ]
+    },
+    "nullable" : true,
+    "metadata" : { }
+  }, {
+    "name" : "OFFICE",
+    "type" : {
+      "type" : "struct",
+      "fields" : [ {
+        "name" : "ADDRESS",
+        "type" : "string",
+        "nullable" : true,
+        "metadata" : {
+          "maxLength" : 30
+        }
+      }, {
+        "name" : "FLOOR",
+        "type" : "integer",
+        "nullable" : true,
+        "metadata" : { }
+      }, {
+        "name" : "ROOM_NUMBER",
+        "type" : "integer",
+        "nullable" : true,
+        "metadata" : { }
+      } ]
+    },
+    "nullable" : true,
+    "metadata" : { }
+  }, {
+    "name" : "CUSTOMER",
+    "type" : {
+      "type" : "struct",
+      "fields" : [ {
+        "name" : "CUSTOMER_NAME",
+        "type" : "string",
+        "nullable" : true,
+        "metadata" : {
+          "maxLength" : 20
+        }
+      }, {
+        "name" : "POSTAL_ADDRESS",
+        "type" : "string",
+        "nullable" : true,
+        "metadata" : {
+          "maxLength" : 30
+        }
+      }, {
+        "name" : "ZIP",
+        "type" : "string",
+        "nullable" : true,
+        "metadata" : {
+          "maxLength" : 10
+        }
+      } ]
+    },
+    "nullable" : true,
+    "metadata" : { }
+  }, {
+    "name" : "CONTACT",
+    "type" : {
+      "type" : "struct",
+      "fields" : [ {
+        "name" : "FIRST_NAME",
+        "type" : "string",
+        "nullable" : true,
+        "metadata" : {
+          "maxLength" : 16
+        }
+      }, {
+        "name" : "LAST_NAME",
+        "type" : "string",
+        "nullable" : true,
+        "metadata" : {
+          "maxLength" : 16
+        }
+      }, {
+        "name" : "PHONE_NUM",
+        "type" : "string",
+        "nullable" : true,
+        "metadata" : {
+          "maxLength" : 17
+        }
+      } ]
+    },
+    "nullable" : true,
+    "metadata" : { }
+  }, {
+    "name" : "CONTRACT",
+    "type" : {
+      "type" : "struct",
+      "fields" : [ {
+        "name" : "CONTRACT_NUMBER",
+        "type" : "string",
+        "nullable" : true,
+        "metadata" : {
+          "maxLength" : 15
+        }
+      }, {
+        "name" : "STATE",
+        "type" : "string",
+        "nullable" : true,
+        "metadata" : {
+          "maxLength" : 8
+        }
+      }, {
+        "name" : "DUE_DATE",
+        "type" : "string",
+        "nullable" : true,
+        "metadata" : {
+          "maxLength" : 10
+        }
+      }, {
+        "name" : "AMOUNT",
+        "type" : "decimal(12,2)",
+        "nullable" : true,
+        "metadata" : { }
+      } ]
+    },
+    "nullable" : true,
+    "metadata" : { }
+  } ]
+}

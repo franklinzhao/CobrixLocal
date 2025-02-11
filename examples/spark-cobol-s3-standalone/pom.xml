@@ -91,12 +91,19 @@
         </dependency>
 
         <!-- Test -->
+        <!-- scalatest -->
         <dependency>
             <groupId>org.scalatest</groupId>
             <artifactId>scalatest_${scala.compat.version}</artifactId>
             <version>${scalatest.version}</version>
             <scope>test</scope>
         </dependency>
+        <!-- mockito -->
+        <!-- <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <scope>test</scope>
+        </dependency> -->
     </dependencies>
 
     <build>
@@ -162,7 +169,8 @@
                 <configuration>
                     <transformers>
                         <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                            <mainClass>com.example.spark.cobol.app.SparkCobolS3App</mainClass>
+                            <!-- <mainClass>com.example.spark.cobol.app.SparkCobolS3App</mainClass> -->
+                            <mainClass>com.example.spark.cobol.app.RowExtractorTest</mainClass>
                         </transformer>
                         <!-- This allows to support several library data sources for Spark by referring to them by short name. -->
                         <transformer

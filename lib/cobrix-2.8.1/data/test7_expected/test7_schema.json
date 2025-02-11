@@ -1,0 +1,45 @@
+{
+  "type" : "struct",
+  "fields" : [ {
+    "name" : "COMPANY_PREFIX",
+    "type" : "string",
+    "nullable" : true,
+    "metadata" : {
+      "maxLength" : 3
+    }
+  }, {
+    "name" : "COMPANY_NAME",
+    "type" : "string",
+    "nullable" : true,
+    "metadata" : {
+      "maxLength" : 9
+    }
+  }, {
+    "name" : "ADDRESS",
+    "type" : "string",
+    "nullable" : true,
+    "metadata" : {
+      "maxLength" : 25
+    }
+  }, {
+    "name" : "CONTACT_PERSON",
+    "type" : {
+      "type" : "struct",
+      "fields" : [ {
+        "name" : "FIRST_NAME",
+        "type" : "string",
+        "nullable" : true,
+        "metadata" : {
+          "maxLength" : 6
+        }
+      } ]
+    },
+    "nullable" : true,
+    "metadata" : { }
+  }, {
+    "name" : "AMOUNT",
+    "type" : "decimal(11,2)",
+    "nullable" : true,
+    "metadata" : { }
+  } ]
+}

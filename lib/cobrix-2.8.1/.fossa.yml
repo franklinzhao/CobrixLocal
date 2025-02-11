@@ -1,0 +1,30 @@
+# Visit https://fossa.com to learn more
+
+version: 3
+
+server: https://app.fossa.com
+
+project:
+  id: github.com/AbsaOSS/cobrix
+  name: cobrix
+  policy: custom-cli-policy
+  link: fossa.com
+  url: github.com/AbsaOSS/cobrix
+
+targets:
+  only:
+    - type: scala
+      path: cobrix
+
+paths:
+  only:
+    - cobol-parser
+    - cobol-converters
+    - spark-cobol
+    - target
+  exclude:
+    - ./examples
+    - ./project
+
+telemetry:
+  scope: "off"

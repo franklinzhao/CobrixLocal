@@ -1,0 +1,105 @@
+{
+  "type" : "struct",
+  "fields" : [ {
+    "name" : "ID",
+    "type" : "integer",
+    "nullable" : true,
+    "metadata" : { }
+  }, {
+    "name" : "COMPANY",
+    "type" : {
+      "type" : "struct",
+      "fields" : [ {
+        "name" : "SHORT_NAME",
+        "type" : "string",
+        "nullable" : true,
+        "metadata" : {
+          "maxLength" : 10
+        }
+      }, {
+        "name" : "COMPANY_ID_NUM",
+        "type" : "integer",
+        "nullable" : true,
+        "metadata" : { }
+      }, {
+        "name" : "COMPANY_ID_STR",
+        "type" : "string",
+        "nullable" : true,
+        "metadata" : {
+          "maxLength" : 3
+        }
+      } ]
+    },
+    "nullable" : true,
+    "metadata" : { }
+  }, {
+    "name" : "METADATA",
+    "type" : {
+      "type" : "struct",
+      "fields" : [ {
+        "name" : "CLIENTID",
+        "type" : "string",
+        "nullable" : true,
+        "metadata" : {
+          "maxLength" : 15
+        }
+      }, {
+        "name" : "REGISTRATION_NUM",
+        "type" : "string",
+        "nullable" : true,
+        "metadata" : {
+          "maxLength" : 10
+        }
+      }, {
+        "name" : "NUMBER_OF_ACCTS",
+        "type" : "integer",
+        "nullable" : true,
+        "metadata" : { }
+      }, {
+        "name" : "ACCOUNT",
+        "type" : {
+          "type" : "struct",
+          "fields" : [ {
+            "name" : "ACCOUNT_DETAIL",
+            "type" : {
+              "type" : "array",
+              "elementType" : {
+                "type" : "struct",
+                "fields" : [ {
+                  "name" : "ACCOUNT_NUMBER",
+                  "type" : "string",
+                  "nullable" : true,
+                  "metadata" : {
+                    "maxLength" : 24
+                  }
+                }, {
+                  "name" : "ACCOUNT_TYPE_N",
+                  "type" : "integer",
+                  "nullable" : true,
+                  "metadata" : { }
+                }, {
+                  "name" : "ACCOUNT_TYPE_X",
+                  "type" : "string",
+                  "nullable" : true,
+                  "metadata" : {
+                    "maxLength" : 3
+                  }
+                } ]
+              },
+              "containsNull" : true
+            },
+            "nullable" : true,
+            "metadata" : {
+              [redacted],
+              [redacted]
+            }
+          } ]
+        },
+        "nullable" : true,
+        "metadata" : { }
+      } ]
+    },
+    "nullable" : true,
+    "metadata" : { }
+  } ]
+}
